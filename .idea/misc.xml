@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/JobResources/GreenTechAppsFoundation/gtaf_ui_test/app/src/main/res/drawable/bottom_nav_color.xml" value="0.24259259259259258" />
+        <entry key="..\:/JobResources/GreenTechAppsFoundation/gtaf_ui_test/app/src/main/res/layout/activity_main.xml" value="0.3026041666666667" />
+        <entry key="..\:/JobResources/GreenTechAppsFoundation/gtaf_ui_test/app/src/main/res/layout/commit_fragment.xml" value="0.307518115942029" />
+        <entry key="..\:/JobResources/GreenTechAppsFoundation/gtaf_ui_test/app/src/main/res/layout/dialog_progress.xml" value="0.14010416666666667" />
+        <entry key="..\:/JobResources/GreenTechAppsFoundation/gtaf_ui_test/app/src/main/res/layout/user_fragment.xml" value="0.3026041666666667" />
+        <entry key="..\:/JobResources/GreenTechAppsFoundation/gtaf_ui_test/app/src/main/res/menu/bottom_nav_menu.xml" value="0.13333333333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GTAF UI Test</string>
+    <string name="commits">Commits</string>
+    <string name="user_profie">User Profie</string>
+</resources>
