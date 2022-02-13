@@ -15,12 +15,15 @@ class CommitViewModel(
 
     private val _commitResponse: MutableLiveData<Resource<CommitResponse>> = MutableLiveData()
     val commitData: LiveData<Resource<CommitResponse>>
-    get() = _commitResponse
+        get() = _commitResponse
 
-    fun getCommitList(owner: String,
-                      repo: String,
-                      page: Int,
-                      per_page: Int) = viewModelScope.launch {
-                          _commitResponse.value = repository.fetchCommit(owner, repo, page, per_page)
+    fun getCommitList(
+        owner: String,
+        repo: String,
+        page: Int,
+        per_page: Int
+    ) = viewModelScope.launch {
+        _commitResponse.value = Resource.Loading
+        _commitResponse.value = repository.fetchCommit(owner, repo, page, per_page)
     }
 }

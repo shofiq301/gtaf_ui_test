@@ -3,7 +3,7 @@ package com.shofiq.gtafuitest.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Committer(
+data class  Committer(
     @SerializedName("date")
     val date: String,
     @SerializedName("email")

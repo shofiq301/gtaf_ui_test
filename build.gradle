@@ -13,13 +13,10 @@ buildscript {
     }
 }
 ext{
-    //Navigation component
     nav_version = "2.4.1"
-    //retrofit
     retrofitVersion = "2.9.0"
-
-    //OKhttp version
     okHttpVersion = "4.9.3"
+    scalable_size = "1.0.6"
 }
 
 

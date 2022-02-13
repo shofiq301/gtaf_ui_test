@@ -1,7 +1,5 @@
 package com.shofiq.gtafuitest.base
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +14,7 @@ import com.shofiq.gtafuitest.network.RemoteDataSource
 
 abstract class BaseFragment<VB: ViewBinding, VM: ViewModel, R: BaseRepository> : Fragment() {
 
-    private lateinit var binding: VB
+    lateinit var binding: VB
     val remoteDataSource = RemoteDataSource()
     lateinit var viewModel: VM
     var progressBuilder: AlertDialog.Builder? = null
@@ -38,36 +36,5 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel, R: BaseRepository> :
     abstract fun getFragmentBinding(layoutInflater: LayoutInflater, container: ViewGroup?): VB
 
     abstract fun getRepository(): R
-
-
-//    open fun createDialog(context: Context) {
-//        progressBuilder = AlertDialog.Builder(context, R.style.ProgressStyle)
-//        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-//        @SuppressLint("InflateParams") val view: View =
-//            inflater.inflate(R.layout.dialog_progress, null)
-//        progressBuilder!!.setView(view)
-//        dialog = progressBuilder!!.create()
-//        dialog!!.setCancelable(false)
-//        dialog!!.setMessage("Please wait..")
-//    }
-//
-//    open fun showProgress() {
-//        try {
-//            if (dialog != null)
-//                dialog?.show()
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-//    }
-//
-//    open fun hideProgress() {
-//        try {
-//            if (dialog != null && dialog!!.isShowing) {
-//                dialog!!.dismiss()
-//            }
-//        } catch (e: java.lang.Exception) {
-//            e.printStackTrace()
-//        }
-//    }
 
 }

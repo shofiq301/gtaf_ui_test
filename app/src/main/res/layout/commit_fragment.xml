@@ -7,13 +7,59 @@
     tools:context=".ui.commit.CommitFragment"
     android:background="@color/main_bg">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Commit"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/header">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:textSize="@dimen/_17ssp"
+            android:textColor="@color/white"
+            android:text="@string/flutter_commit_list"
+            android:layout_marginStart="@dimen/_13sdp"
+            android:layout_gravity="center_vertical"
+            android:textAppearance="@style/textStyle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:textSize="@dimen/_15ssp"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_2sdp"
+            android:text="@string/master"
+            android:background="@drawable/header_item_bg"
+            android:layout_marginStart="@dimen/_13sdp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textAppearance="@style/textStyle"/>
+
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:id="@+id/recycler_commit_list"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"/>
+
+    <include
+        layout="@layout/dialog_progress"
+        android:id="@+id/progress_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/recycler_commit_list"
+        app:layout_constraintEnd_toEndOf="@+id/recycler_commit_list"
+        app:layout_constraintStart_toStartOf="@+id/recycler_commit_list"
+        app:layout_constraintTop_toTopOf="@+id/header" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

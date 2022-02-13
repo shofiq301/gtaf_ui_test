@@ -2,4 +2,6 @@
     <string name="app_name">GTAF UI Test</string>
     <string name="commits">Commits</string>
     <string name="user_profie">User Profie</string>
+    <string name="flutter_commit_list">Flutter Commit List</string>
+    <string name="master">master</string>
 </resources>

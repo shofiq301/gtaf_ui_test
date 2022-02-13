@@ -9,11 +9,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RemoteDataSource {
-    companion object {
-        private const val BASE_URL = ""
-    }
-
-
     private var interceptor = HttpLoggingInterceptor()
         .setLevel(HttpLoggingInterceptor.Level.BODY);
     private val okHttpClient = OkHttpClient.Builder().also {

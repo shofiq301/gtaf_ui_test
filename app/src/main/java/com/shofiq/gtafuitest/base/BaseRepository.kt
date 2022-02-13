@@ -19,7 +19,7 @@ abstract class BaseRepository {
                        Resource.Failure(false, throwable.code(), throwable.response()?.errorBody())
                    }
                    else -> {
-                       Resource.Failure(false, null, null)
+                       Resource.Failure(true, null, null)
                    }
                }
            }

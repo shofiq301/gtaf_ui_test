@@ -16,8 +16,11 @@
 
     <style name="BottomNavigationViewTextStyle">
         <item name="android:fontFamily">@font/source_sans_pro</item>
-        <item name="android:textSize">10sp</item>
-        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:fontWeight" tools:targetApi="o">400</item>
+    </style>
+
+    <style name="textStyle">
         <item name="android:fontWeight" tools:targetApi="o">400</item>
     </style>
 

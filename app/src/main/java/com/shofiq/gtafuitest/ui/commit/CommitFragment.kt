@@ -6,17 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.shofiq.gtafuitest.R
+import androidx.lifecycle.lifecycleScope
 import com.shofiq.gtafuitest.base.BaseFragment
-import com.shofiq.gtafuitest.base.ViewModelFactory
 import com.shofiq.gtafuitest.databinding.CommitFragmentBinding
 import com.shofiq.gtafuitest.network.ApiInterface
 import com.shofiq.gtafuitest.network.Resource
 import com.shofiq.gtafuitest.repository.CommitRepository
-import com.shofiq.gtafuitest.ui.user.UserViewModel
+import com.shofiq.gtafuitest.utils.handleApiError
+import com.shofiq.gtafuitest.utils.visible
+import kotlinx.coroutines.launch
 
 class CommitFragment : BaseFragment<CommitFragmentBinding, CommitViewModel, CommitRepository>() {
+
+    private val myAdapter by lazy { RecyclerViewAdapter() }
     override fun getViewModel() = CommitViewModel::class.java
 
     override fun getFragmentBinding(
@@ -26,21 +28,28 @@ class CommitFragment : BaseFragment<CommitFragmentBinding, CommitViewModel, Comm
 
     override fun getRepository() = CommitRepository(remoteDataSource.buildApi(ApiInterface::class.java))
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getCommitList("shofiq301", "my_player", 1, 10)
+        binding.progressLayout.spinKit.visible(true)
+        binding.recyclerCommitList.adapter = myAdapter
+        viewModel.getCommitList("shofiq301", "gtaf_ui_test", 1, 10)
         viewModel.commitData.observe(viewLifecycleOwner, Observer {
+            binding.progressLayout.spinKit.visible(it is Resource.Loading)
             when(it){
                 is Resource.Success -> {
-                    Log.d("SUCCESS",it.toString())
+                   lifecycleScope.launch {
+                       myAdapter.setData(it.value)
+                   }
                 }
-                is Resource.Failure -> {
-                    Log.d("FAILED",it.toString())
+                is Resource.Loading -> {
+                    Log.d("TAG", "loading")
+                }
+                else -> {
+                    handleApiError(it as Resource.Failure)
                 }
             }
         })
     }
-
-
 }
