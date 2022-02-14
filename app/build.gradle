@@ -71,8 +71,4 @@ dependencies {
 
     //load image from api
     implementation("io.coil-kt:coil:1.1.0")
-
-    //scalable size
-    implementation "com.intuit.sdp:sdp-android:$scalable_size"
-    implementation "com.intuit.ssp:ssp-android:$scalable_size"
 }

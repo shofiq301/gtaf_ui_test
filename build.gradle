@@ -16,7 +16,6 @@ ext{
     nav_version = "2.4.1"
     retrofitVersion = "2.9.0"
     okHttpVersion = "4.9.3"
-    scalable_size = "1.0.6"
 }
 
 
