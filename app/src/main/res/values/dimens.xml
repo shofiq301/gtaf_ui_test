@@ -16,4 +16,5 @@
     <dimen name="dp_half">0.5dp</dimen>
     <dimen name="dp_168">168dp</dimen>
     <dimen name="sp_24">24sp</dimen>
+    <dimen name="dp_45">45dp</dimen>
 </resources>
