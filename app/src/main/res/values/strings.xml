@@ -4,4 +4,9 @@
     <string name="user_profie">User Profie</string>
     <string name="flutter_commit_list">Flutter Commit List</string>
     <string name="master">master</string>
+
+    <string name="fomatted_tw_ac">\@%s</string>
+    <string name="fomatted_bio">Bio: %s</string>
+    <string name="fomatted_public_repo">Public Repos: %d</string>
+    <string name="fomatted_public_git">Public Gists: %d</string>
 </resources>

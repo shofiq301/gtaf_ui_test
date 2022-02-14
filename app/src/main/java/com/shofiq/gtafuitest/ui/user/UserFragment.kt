@@ -1,31 +1,47 @@
 package com.shofiq.gtafuitest.ui.user
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.shofiq.gtafuitest.R
+import androidx.lifecycle.lifecycleScope
+import com.shofiq.gtafuitest.base.BaseFragment
+import com.shofiq.gtafuitest.databinding.UserFragmentBinding
+import com.shofiq.gtafuitest.network.ApiInterface
+import com.shofiq.gtafuitest.network.RemoteDataSource.Companion.USER
+import com.shofiq.gtafuitest.network.Resource
+import com.shofiq.gtafuitest.repository.ProfileRepository
+import com.shofiq.gtafuitest.utils.handleApiError
+import com.shofiq.gtafuitest.utils.visible
+import com.shofiq.gtafuitest.viewmodels.UserViewModel
+import kotlinx.coroutines.launch
 
-class UserFragment : Fragment() {
+class UserFragment : BaseFragment<UserFragmentBinding, UserViewModel, ProfileRepository>() {
+    override fun getViewModel() = UserViewModel::class.java
 
-    companion object {
-        fun newInstance() = UserFragment()
-    }
+    override fun getFragmentBinding(
+        layoutInflater: LayoutInflater,
+        container: ViewGroup?
+    ) = UserFragmentBinding.inflate(layoutInflater, container ,false)
 
-    private lateinit var viewModel: UserViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.user_fragment, container, false)
-    }
+    override fun getRepository() = ProfileRepository(remoteDataSource.buildApi(ApiInterface::class.java))
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-    }
 
+        binding.progressLayout.spinKit.visible(true)
+        viewModel.getPublicProfile(USER)
+        viewModel.profileData.observe(viewLifecycleOwner) {
+            binding.progressLayout.spinKit.visible(it is Resource.Loading)
+            when (it) {
+                is Resource.Success ->
+                    lifecycleScope.launch {
+                        binding.profile = it.value
+                    }
+                is Resource.Loading -> {}
+                else ->
+                    handleApiError(it as Resource.Failure)
+            }
+        }
+    }
 }

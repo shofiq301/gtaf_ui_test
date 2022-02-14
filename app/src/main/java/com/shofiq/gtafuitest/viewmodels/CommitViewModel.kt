@@ -1,4 +1,4 @@
-package com.shofiq.gtafuitest.ui.commit
+package com.shofiq.gtafuitest.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
