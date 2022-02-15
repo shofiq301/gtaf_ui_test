@@ -10,7 +10,7 @@ Profile link used in app: https://github.com/mikedewar
   - Databinding
   - Coroutine
   - COIL Image loader library
-  - Retrofit
+  - Retrofit to fetch data from api
   - DiffUtil to improve recyclerview performance
   - Impliment base template for fragment to reduce boilerplate code
   - Android-SpinKit library to show loading animations
