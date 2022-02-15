@@ -15,3 +15,5 @@ Profile link: https://github.com/mikedewar
   - Impliment base template for fragment to reduce boilerplate code
   - Android-SpinKit library to show loading animations
 https://github.com/ybq/Android-SpinKit
+
+Api docs: https://docs.github.com/en
