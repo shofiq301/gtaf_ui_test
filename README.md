@@ -7,6 +7,7 @@ Profile link used in app: https://github.com/mikedewar
 
 ## Features
   - MVVM
+  - Navigation Component
   - Databinding
   - Coroutine
   - COIL Image loader library
