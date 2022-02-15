@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.shofiq.gtafuitest.base.BaseFragment
 import com.shofiq.gtafuitest.databinding.CommitFragmentBinding
 import com.shofiq.gtafuitest.network.ApiInterface
@@ -13,11 +14,10 @@ import com.shofiq.gtafuitest.network.RemoteDataSource.Companion.REPO
 import com.shofiq.gtafuitest.network.Resource
 import com.shofiq.gtafuitest.repository.CommitRepository
 import com.shofiq.gtafuitest.utils.handleApiError
-import com.shofiq.gtafuitest.utils.visible
 import com.shofiq.gtafuitest.viewmodels.CommitViewModel
 import kotlinx.coroutines.launch
 
-class CommitFragment : BaseFragment<CommitFragmentBinding, CommitViewModel, CommitRepository>() {
+class CommitFragment : BaseFragment<CommitFragmentBinding, CommitViewModel, CommitRepository>() , SwipeRefreshLayout.OnRefreshListener {
 
     private val myAdapter by lazy { RecyclerViewAdapter() }
     override fun getViewModel() = CommitViewModel::class.java
@@ -32,12 +32,12 @@ class CommitFragment : BaseFragment<CommitFragmentBinding, CommitViewModel, Comm
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.progressLayout.spinKit.visible(true)
-        binding.recyclerCommitList.adapter = myAdapter
-        viewModel.getCommitList(OWNER, REPO, 1, 10)
+        myAdapter.also { binding.recyclerCommitList.adapter = it }
+        binding.refreshMain.isRefreshing = false
+        binding.refreshMain.setOnRefreshListener(this)
+        callApi()
         viewModel.commitData.observe(viewLifecycleOwner) {
-            binding.progressLayout.spinKit.visible(it is Resource.Loading)
+            with(binding) { refreshMain.isRefreshing = it is Resource.Loading }
             when (it) {
                 is Resource.Success -> {
                     lifecycleScope.launch {
@@ -50,5 +50,14 @@ class CommitFragment : BaseFragment<CommitFragmentBinding, CommitViewModel, Comm
                 }
             }
         }
+    }
+
+    private fun callApi(){
+        viewModel.getCommitList(OWNER, REPO, 1, 10)
+    }
+
+    override fun onRefresh() {
+        binding.refreshMain.isRefreshing = true
+        callApi()
     }
 }

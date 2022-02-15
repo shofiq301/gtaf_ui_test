@@ -4,118 +4,131 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="profile"
             type="com.shofiq.gtafuitest.models.ProfileResponse" />
+
+        <variable
+            name="loadingState"
+            type="Boolean" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.user.UserFragment"
-        android:background="@color/main_bg">
+        android:background="@color/main_bg"
+        android:fillViewport="true">
 
-        <ImageView
-            android:id="@+id/imgProfile"
-            android:layout_width="@dimen/dp_168"
-            android:layout_height="@dimen/dp_168"
-            android:layout_marginTop="@dimen/dp_30"
-            android:contentDescription="@string/app_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:loadUserPhoto="@{profile.avatarUrl}"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{loadingState == false ? View.GONE : View.VISIBLE }">
+                <ImageView
+                    android:id="@+id/imgProfile"
+                    android:layout_width="@dimen/dp_168"
+                    android:layout_height="@dimen/dp_168"
+                    android:layout_marginTop="@dimen/dp_30"
+                    android:contentDescription="@string/app_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:loadUserPhoto="@{profile.avatarUrl}"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/txt_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:fontFamily="@font/source_sans_pro"
-            android:text="@{profile.name}"
-            android:textAppearance="@style/textStyle"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_24"
-            app:layout_constraintEnd_toEndOf="@+id/imgProfile"
-            app:layout_constraintStart_toStartOf="@+id/imgProfile"
-            app:layout_constraintTop_toBottomOf="@+id/imgProfile"
-            android:layout_marginTop="@dimen/dp_16"/>
+                <TextView
+                    android:id="@+id/txt_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:text="@{profile.name}"
+                    android:textAppearance="@style/textStyle"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_24"
+                    app:layout_constraintEnd_toEndOf="@+id/imgProfile"
+                    app:layout_constraintStart_toStartOf="@+id/imgProfile"
+                    app:layout_constraintTop_toBottomOf="@+id/imgProfile"
+                    android:layout_marginTop="@dimen/dp_16"/>
 
-        <TextView
-            android:id="@+id/txt_tw_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:fontFamily="@font/source_sans_pro"
-            android:text='@{@string/fomatted_tw_ac(profile.twitterUsername)}'
-            android:textAppearance="@style/textStyle"
-            android:textColor="@color/twitter_ac_color"
-            android:textSize="@dimen/sp_14"
-            app:layout_constraintEnd_toEndOf="@+id/txt_name"
-            app:layout_constraintStart_toStartOf="@+id/txt_name"
-            app:layout_constraintTop_toBottomOf="@+id/txt_name" />
+                <TextView
+                    android:id="@+id/txt_tw_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:text='@{@string/fomatted_tw_ac(profile.twitterUsername)}'
+                    android:textAppearance="@style/textStyle"
+                    android:textColor="@color/twitter_ac_color"
+                    android:textSize="@dimen/sp_14"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_name"
+                    app:layout_constraintStart_toStartOf="@+id/txt_name"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
-        <TextView
-            android:id="@+id/txt_bio"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:fontFamily="@font/source_sans_pro"
-            android:text='@{@string/fomatted_bio(profile.bio)}'
-            android:textAppearance="@style/textStyle"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_17"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_tw_profile"
-            android:layout_marginHorizontal="@dimen/dp_20"
-            android:layout_marginTop="@dimen/dp_16"
-            android:ellipsize="end"
-            android:maxLines="5"
-            android:gravity="center" />
+                <TextView
+                    android:id="@+id/txt_bio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/source_sans_pro"
+                    android:text='@{@string/fomatted_bio(profile.bio)}'
+                    android:textAppearance="@style/textStyle"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_17"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_tw_profile"
+                    android:layout_marginHorizontal="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:ellipsize="end"
+                    android:maxLines="5"
+                    android:gravity="center" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="@dimen/dp_16"
-            app:layout_constraintTop_toBottomOf="@+id/txt_bio">
-            <TextView
-                android:id="@+id/txt_public_repo"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="@dimen/dp_16"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_bio">
+                    <TextView
+                        android:id="@+id/txt_public_repo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text='@{@string/fomatted_public_repo(profile.publicRepos)}'
+                        android:fontFamily="@font/source_sans_pro"
+                        android:textAppearance="@style/textStyle"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_17"
+                        />
+                    <TextView
+                        android:id="@+id/txt_public_gist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:fontFamily="@font/source_sans_pro"
+                        android:text='@{@string/fomatted_public_git(profile.publicGists)}'
+                        android:textAppearance="@style/textStyle"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_17" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                android:id="@+id/progress_layout"
+                layout="@layout/dialog_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text='@{@string/fomatted_public_repo(profile.publicRepos)}'
-                android:fontFamily="@font/source_sans_pro"
-                android:textAppearance="@style/textStyle"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp_17"
-                />
-            <TextView
-                android:id="@+id/txt_public_gist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/dp_8"
-                android:fontFamily="@font/source_sans_pro"
-                android:text='@{@string/fomatted_public_git(profile.publicGists)}'
-                android:textAppearance="@style/textStyle"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp_17" />
-        </LinearLayout>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-        <include
-            android:id="@+id/progress_layout"
-            layout="@layout/dialog_progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

@@ -22,21 +22,26 @@ class UserFragment : BaseFragment<UserFragmentBinding, UserViewModel, ProfileRep
     override fun getFragmentBinding(
         layoutInflater: LayoutInflater,
         container: ViewGroup?
-    ) = UserFragmentBinding.inflate(layoutInflater, container ,false)
+    ) = UserFragmentBinding.inflate(layoutInflater, container, false)
 
-    override fun getRepository() = ProfileRepository(remoteDataSource.buildApi(ApiInterface::class.java))
+    override fun getRepository() =
+        ProfileRepository(remoteDataSource.buildApi(ApiInterface::class.java))
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.progressLayout.spinKit.visible(true)
+        with(binding) {
+            progressLayout.spinKit.visible(true)
+            binding.loadingState = false
+        }
         viewModel.getPublicProfile(USER)
         viewModel.profileData.observe(viewLifecycleOwner) {
-            binding.progressLayout.spinKit.visible(it is Resource.Loading)
+            with(binding) { progressLayout.spinKit.visible(it is Resource.Loading) }
             when (it) {
                 is Resource.Success ->
                     lifecycleScope.launch {
                         binding.profile = it.value
+                        binding.loadingState = true
                     }
                 is Resource.Loading -> {}
                 else ->

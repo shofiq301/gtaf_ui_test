@@ -1,66 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.commit.CommitFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.commit.CommitFragment"
-    android:background="@color/main_bg">
+    android:id="@+id/refresh_main">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/dp_13"
-        android:layout_marginStart="@dimen/dp_13"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/header">
+        android:layout_height="match_parent"
+        android:background="@color/main_bg">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
-            android:textSize="@dimen/sp_17"
-            android:textColor="@color/white"
-            android:text="@string/flutter_commit_list"
-            android:layout_gravity="center_vertical"
-            android:textAppearance="@style/textStyle"/>
+            android:layout_marginStart="@dimen/dp_13"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/dp_13"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
-            android:textSize="@dimen/sp_15"
-            android:paddingHorizontal="@dimen/dp_8"
-            android:paddingBottom="@dimen/dp_2"
-            android:text="@string/master"
-            android:background="@drawable/header_item_bg"
-            android:layout_marginStart="@dimen/dp_24"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:textAppearance="@style/textStyle"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/roboto"
+                android:text="@string/flutter_commit_list"
+                android:textAppearance="@style/textStyle"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_17" />
 
-    </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:id="@+id/recycler_commit_list"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dp_24"
+                android:background="@drawable/header_item_bg"
+                android:fontFamily="@font/roboto"
+                android:paddingHorizontal="@dimen/dp_8"
+                android:paddingBottom="@dimen/dp_2"
+                android:text="@string/master"
+                android:textAppearance="@style/textStyle"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_15" />
 
-    <include
-        layout="@layout/dialog_progress"
-        android:id="@+id/progress_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_commit_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
